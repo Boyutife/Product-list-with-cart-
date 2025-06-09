@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="stylesheet" href="./src/output.css" />
+
+    <title>Frontend Mentor | Product list with cart</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body class="font-display flex flex-col p-4 gap-4 bg-rose-50 relative">
+    <header class="text-slate-900 text-left font-bold text-4xl">
+      Desserts
+    </header>
+
+    <main class="container flex flex-col gap-4"></main>
+
+    <form class="cart-form mt-8 flex flex-col gap-4" id="cart-form"></form>
+
+    <div
+      id="modal"
+      class="fixed inset-0 bg-rose-100/50 flex justify-center items-center z-50 hidden"
+    ></div>
+
+    <footer class="text-center text-slate-500 text-sm mt-auto">
+      Challenge by
+      <a
+        class="text-amber-700"
+        href="https://www.frontendmentor.io?ref=challenge"
+        >Frontend Mentor</a
+      >. Coded by <a class="text-amber-700" href="#">Boyutife</a>.
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
