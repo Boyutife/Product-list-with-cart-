@@ -49,7 +49,7 @@ function renderProducts(data) {
   />
 </picture>
 
-        <div class="cartBtn absolute -bottom-6 md:-bottom-4 cursor-pointer left-1/2 transform -translate-x-1/2 bg-white border border-rose-600 w-1/2 px-3 md:px-1 py-2 flex justify-center items-center gap-2 rounded-3xl" data-id="${
+        <div class="cartBtn absolute -bottom-6 md:-bottom-4 cursor-pointer left-1/2 transform -translate-x-1/2 bg-white border border-rose-600 w-1/2 md:w-3/5 px-3 md:px-1 py-2 flex justify-center items-center gap-2 rounded-3xl" data-id="${
           product.id
         }">
           <img class="w-8  md:w-4" src="./assets/images/icon-add-to-cart.svg" alt="add cart icon" />
