@@ -1,10 +1,42 @@
 // Global variables
 const cartForm = document.querySelector('.cart-form');
 const productsContainer = document.querySelector('main');
+const searchInput = document.getElementById('search-input');
+const filtersContainer = document.getElementById('filters-container');
 
 // Maintain cart state
 let cart = new Map();
 let products = [];
+let checkboxes = [];
+
+// Event listener for filtering
+
+function filterProducts() {
+  // Get the search term
+  const searchTerm = searchInput.value.toLowerCase();
+  // Get checked categories
+  const checkedCategories = checkboxes
+    .filter((check) => check.checked)
+    .map((check) => check.id);
+
+  products.forEach((product) => {
+    const matchesSearchTerms = product.name.toLowerCase().includes(searchTerm);
+    const isInCheckedCategory =
+      checkedCategories.length === 0 ||
+      checkedCategories.includes(product.category);
+
+    const productElement = [...productsContainer.children].find(
+      (el) => el.querySelector('h2')?.textContent === product.name,
+    );
+
+    if (productElement) {
+      productElement.classList.toggle(
+        'hidden',
+        !(matchesSearchTerms && isInCheckedCategory),
+      );
+    }
+  });
+}
 
 // Function to fetch products from a JSON file
 
@@ -49,7 +81,7 @@ function renderProducts(data) {
   />
 </picture>
 
-        <div class="cartBtn absolute -bottom-6 md:-bottom-4 cursor-pointer left-1/2 transform -translate-x-1/2 bg-white border border-rose-600 w-1/2 px-3 md:px-1 py-2 flex justify-center items-center gap-2 rounded-3xl" data-id="${
+        <div class="cartBtn absolute -bottom-6 md:-bottom-4 cursor-pointer left-1/2 transform -translate-x-1/2 bg-white border border-rose-600 w-1/2 px-3 md:px-1 md:w-3/5 py-2 flex justify-center items-center gap-2 rounded-3xl" data-id="${
           product.id
         }">
           <img class="w-8  md:w-4" src="./assets/images/icon-add-to-cart.svg" alt="add cart icon" />
@@ -57,8 +89,17 @@ function renderProducts(data) {
         </div>
       </div>
     `;
+
+    const filter = document.createElement('div');
+    filter.className = 'filter-item flex items-center gap-1.5';
+    filter.innerHTML = `
+    <input type="checkbox" class="check" id="${product.category}" />
+              <label for="${product.category}">${product.category}</label>
+              `;
+    filtersContainer.appendChild(filter);
     productsContainer.appendChild(el);
     products.push(product);
+    checkboxes.push(filter.querySelector('.check'));
     createQuantityBtns(product);
   });
 }
@@ -401,7 +442,13 @@ function updateCartForm() {
 
 //  Fetch products and render them
 
-getProducts().then((data) => {
+async function init() {
+  const data = await getProducts();
   renderProducts(data);
   createCartForm();
-});
+
+  searchInput.addEventListener('input', filterProducts);
+  filtersContainer.addEventListener('change', filterProducts);
+}
+
+init();

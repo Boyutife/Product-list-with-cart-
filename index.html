@@ -21,11 +21,51 @@
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   </head>
   <body
-    class="font-display relative flex min-h-screen flex-col gap-4 bg-rose-50 p-4"
+    class="font-display relative flex min-h-screen flex-col gap-3 bg-rose-50 p-1"
   >
+    <!-- nav tag -->
+    <nav class="mb-4 bg-rose-200 p-4">
+      <div class="container flex items-center md:mx-auto md:max-w-6xl">
+        <div class="relative w-full">
+          <!-- search area -->
+          <input
+            type="text"
+            class="rounded-full bg-rose-100 p-2 pl-10 placeholder-gray-500 focus:w-full"
+            id="search-input"
+            placeholder="Search for products"
+          />
+          <svg
+            class="absolute top-1/2 left-2 h-5 w-5 -translate-y-1/2 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-6-6m2.25-4.5a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z"
+            />
+          </svg>
+        </div>
+      </div>
+    </nav>
     <!-- Content Wrapper -->
-    <div class="flex w-full flex-1 flex-col gap-4 p-4 md:mx-auto md:max-w-5xl">
-      <div class="container w-full md:grid md:grid-cols-[4fr_2fr] md:gap-5">
+    <div class="flex w-full flex-1 flex-col gap-4 p-4 md:mx-auto md:max-w-7xl">
+      <div class="container w-full md:grid md:grid-cols-[1fr_4fr_2fr] md:gap-5">
+        <!-- Filter container -->
+        <div
+          class="hidden w-full max-w-[10rem] space-y-2 p-2 filter md:flex md:flex-col"
+        >
+          <h2 class="text-xl font-semibold">Filters</h2>
+          <h3 class="text-lg font-semibold">Category</h3>
+          <div id="filters-container" class="space-y-2 text-sm">
+            <div></div>
+          </div>
+        </div>
         <!-- Main content -->
         <div class="flex flex-col gap-4">
           <header class="text-left text-4xl font-bold text-slate-900">
@@ -39,7 +79,7 @@
 
         <!-- Cart Form -->
         <form
-          class="cart-form mt-8 flex flex-col gap-4 md:w-full"
+          class="cart-form mt-8 flex flex-col gap-4 md:mt-0 md:ml-6 md:w-full"
           id="cart-form"
         ></form>
       </div>
